@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		875F781B22C15FA0008193AC /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875F781A22C15FA0008193AC /* CustomTableViewCell.swift */; };
+		875F781D22C163F8008193AC /* PlaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875F781C22C163F8008193AC /* PlaceModel.swift */; };
 		8788783222C1444F002098ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8788783122C1444F002098ED /* AppDelegate.swift */; };
 		8788783722C1444F002098ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8788783522C1444F002098ED /* Main.storyboard */; };
 		8788783922C14451002098ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8788783822C14451002098ED /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		875F781A22C15FA0008193AC /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		875F781C22C163F8008193AC /* PlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceModel.swift; sourceTree = "<group>"; };
 		8788782E22C1444F002098ED /* MyPlaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyPlaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8788783122C1444F002098ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8788783622C1444F002098ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				8788783122C1444F002098ED /* AppDelegate.swift */,
 				8788784322C14930002098ED /* MainViewController.swift */,
 				875F781A22C15FA0008193AC /* CustomTableViewCell.swift */,
+				875F781C22C163F8008193AC /* PlaceModel.swift */,
 				8788783522C1444F002098ED /* Main.storyboard */,
 				8788783822C14451002098ED /* Assets.xcassets */,
 				8788783A22C14451002098ED /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				875F781B22C15FA0008193AC /* CustomTableViewCell.swift in Sources */,
+				875F781D22C163F8008193AC /* PlaceModel.swift in Sources */,
 				8788783222C1444F002098ED /* AppDelegate.swift in Sources */,
 				8788784422C14930002098ED /* MainViewController.swift in Sources */,
 			);

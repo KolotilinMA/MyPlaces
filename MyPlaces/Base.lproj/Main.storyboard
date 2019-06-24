@@ -75,7 +75,7 @@
                                 <connections>
                                     <outlet property="NameLabel" destination="DP8-rp-gvv" id="b9H-dH-IkQ"/>
                                     <outlet property="imageOfPlace" destination="eei-6G-SYW" id="kmc-vh-zls"/>
-                                    <outlet property="locationLabel" destination="1rB-li-K01" id="rDI-Am-gMd"/>
+                                    <outlet property="locationLabel" destination="7aG-qz-afL" id="jtE-Ir-QeC"/>
                                     <outlet property="typeLabel" destination="1rB-li-K01" id="r0D-7P-Xl6"/>
                                 </connections>
                             </tableViewCell>
@@ -85,7 +85,13 @@
                             <outlet property="delegate" destination="cvw-7G-TXG" id="2Z8-lP-ybu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Places" id="M8z-5K-Evu"/>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="ZUx-bc-QfZ"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="My Places" id="M8z-5K-Evu">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="Jam-Y2-CDs"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AvW-9b-6Zr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
