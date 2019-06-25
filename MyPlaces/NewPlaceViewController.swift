@@ -21,20 +21,30 @@ class NewPlaceViewController: UITableViewController {
     // MARK: Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
+            // создаем иконки для actionSheet
+            let cameraIcon = #imageLiteral(resourceName: "camera")
+            let photoIcon = #imageLiteral(resourceName: "photo")
+            
             // создание UIAlertController actionSheet
             let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             // создание кнопки Camera
             let camera = UIAlertAction(title: "Camera", style: .default) { _ in
                 // вызаваем chooseImagePicker с параметром camera
                 self.chooseImagePicker(sourse: .camera)
-            
             }
+            // вставляем cameraIcon в меню camera
+            camera.setValue(cameraIcon, forKey: "image")
+            // выравнивание текста actionSheet слева
+            camera.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
             // создание кнопки Photo
             let photo = UIAlertAction(title: "Photo", style: .default) { _ in
                 // вызаваем chooseImagePicker с параметром photoLibrary
                 self.chooseImagePicker(sourse: .photoLibrary)
-                
             }
+            // вставляем photoIcon в меню photo
+            photo.setValue(photoIcon, forKey: "image")
+            // выравнивание текста actionSheet слева
+            photo.setValue(CATextLayerAlignmentMode.left, forKey: "titleTextAlignment")
             // создание кнопки Cancel
             let cancel = UIAlertAction(title: "Cancel", style: .cancel)
             // добавление кнопок к actionSheet
