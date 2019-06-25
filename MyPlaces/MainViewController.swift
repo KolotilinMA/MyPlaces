@@ -9,7 +9,7 @@
 import UIKit
 
 class MainViewController: UITableViewController {
-
+    // Создаем массив мест
     let places = Place.getPlaces()
     
     
@@ -24,6 +24,7 @@ class MainViewController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // Возвращаем количество ячеек из массива places
         return places.count
     }
 
@@ -31,11 +32,17 @@ class MainViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
        
+        // Приминение name ячейки из массива places
         cell.NameLabel?.text = places[indexPath.row].name
+        // Приминение location ячейки из массива places
         cell.locationLabel.text = places[indexPath.row].location
+        // Приминение type ячейки из массива places
         cell.typeLabel.text = places[indexPath.row].type
+        // Приминение image ячейки из массива places по имени
         cell.imageOfPlace?.image = UIImage(named: places[indexPath.row].image)
+        // Скругляем imageOfPlace на радиус половины высоты imageOfPlace
         cell.imageOfPlace?.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2
+        // Обрезаем скругление у imageOfPlace
         cell.imageOfPlace?.clipsToBounds = true
         
         return cell
@@ -54,7 +61,7 @@ class MainViewController: UITableViewController {
     */
 
     @IBAction func cancelAction(_ seque: UIStoryboardSegue) {
-        
+        // Выход по кнопке cancel на главный экран
     }
     
 }
