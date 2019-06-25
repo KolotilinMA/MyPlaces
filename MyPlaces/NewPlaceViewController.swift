@@ -9,13 +9,26 @@
 import UIKit
 
 class NewPlaceViewController: UITableViewController {
-    @IBOutlet var imageOfPlace: UIImageView!
+    
+    var newPlace: Place?
+    var imageIsChanged = false
+    
+    @IBOutlet var placeImage: UIImageView!
+    @IBOutlet var saveButton: UIBarButtonItem!
+    @IBOutlet var placeName: UITextField!
+    @IBOutlet var placeLocation: UITextField!
+    @IBOutlet var placeType: UITextField!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // замена пустого TableView на пустой View
         tableView.tableFooterView = UIView()
+        // Отключение кнопки save по умолсанию
+        saveButton.isEnabled = false
+        // срабатование метода при редактировании placeName
+        placeName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
     }
 
     // MARK: Table view delegate
@@ -59,6 +72,27 @@ class NewPlaceViewController: UITableViewController {
         }
     }
     
+    func saveNewPlace() {
+        
+        // Выбор image по умолчанию или нет
+        var image: UIImage?
+        if imageIsChanged {
+            image = placeImage.image
+        } else {
+            image = #imageLiteral(resourceName: "imagePlaceholder")
+        }
+        
+        newPlace = Place(name: placeName.text!,
+                         location: placeLocation.text,
+                         type: placeType.text,
+                         image: image,
+                         restaurantImage: nil)
+    }
+    
+    @IBAction func cancelAction(_ sender: Any) {
+        // закрытие NewPlaceViewController
+        dismiss(animated: true, completion: nil)
+    }
     
 }
 
@@ -70,6 +104,14 @@ extension NewPlaceViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    // переключение saveButton
+    @objc private func textFieldChanged() {
+        if placeName.text?.isEmpty == false {
+            saveButton.isEnabled = true
+        } else {
+            saveButton.isEnabled = false
+        }
     }
     
 }
@@ -95,11 +137,13 @@ extension NewPlaceViewController: UIImagePickerControllerDelegate, UINavigationC
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         // Присваиваем отредактированное изображение в imageOfPlace
-        imageOfPlace.image = info[.editedImage] as? UIImage
+        placeImage.image = info[.editedImage] as? UIImage
         // позволяем масштабировать изображение
-        imageOfPlace.contentMode = .scaleAspectFill
+        placeImage.contentMode = .scaleAspectFill
         // Обрезаем по границе
-        imageOfPlace.clipsToBounds = true
+        placeImage.clipsToBounds = true
+        
+        imageIsChanged = true
         // закрываем PickerController
         dismiss(animated: true, completion: nil)
         

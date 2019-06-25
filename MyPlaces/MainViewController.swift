@@ -10,7 +10,7 @@ import UIKit
 
 class MainViewController: UITableViewController {
     // Создаем массив мест
-    let places = Place.getPlaces()
+    var places = Place.getPlaces()
     
     
     override func viewDidLoad() {
@@ -31,18 +31,26 @@ class MainViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
-       
+        let place = places[indexPath.row]
+        
         // Приминение name ячейки из массива places
-        cell.NameLabel?.text = places[indexPath.row].name
+        cell.NameLabel?.text = place.name
         // Приминение location ячейки из массива places
-        cell.locationLabel.text = places[indexPath.row].location
+        cell.locationLabel.text = place.location
         // Приминение type ячейки из массива places
-        cell.typeLabel.text = places[indexPath.row].type
-        // Приминение image ячейки из массива places по имени
-        cell.imageOfPlace?.image = UIImage(named: places[indexPath.row].image)
-        // Скругляем imageOfPlace на радиус половины высоты imageOfPlace
+        cell.typeLabel.text = place.type
+        
+        if place.image == nil {
+            // Приминение image ячейки из массива places по имени
+            cell.imageOfPlace?.image = UIImage(named: place.restaurantImage!)
+        } else {
+            // риминение image ячейки из массива places
+            cell.imageOfPlace.image = place.image
+        }
+        
+        // Скругляем placeImage на радиус половины высоты placeImage
         cell.imageOfPlace?.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2
-        // Обрезаем скругление у imageOfPlace
+        // Обрезаем скругление у placeImage
         cell.imageOfPlace?.clipsToBounds = true
         
         return cell
@@ -60,8 +68,15 @@ class MainViewController: UITableViewController {
     }
     */
 
-    @IBAction func cancelAction(_ seque: UIStoryboardSegue) {
-        // Выход по кнопке cancel на главный экран
+    @IBAction func unwindSegue(_ seque: UIStoryboardSegue) {
+        // извлекакем новые данные
+        guard let newPlaceVC = seque.source as? NewPlaceViewController else { return }
+        // присваиваем новые данные в newPlaceVC
+        newPlaceVC.saveNewPlace()
+        // добавляем новые данные в массив places
+        places.append(newPlaceVC.newPlace!)
+        // обновляем tableView
+        tableView.reloadData()
     }
     
 }

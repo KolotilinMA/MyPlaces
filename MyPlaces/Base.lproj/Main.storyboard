@@ -112,7 +112,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo" translatesAutoresizingMaskIntoConstraints="NO" id="6gc-mL-bew">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="249.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="249.50000000000006"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -243,13 +243,21 @@
                     <navigationItem key="navigationItem" title="New Place" id="aC1-dH-zpq">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="TK0-Fw-9hI">
                             <connections>
-                                <segue destination="2u6-Bg-qQU" kind="unwind" unwindAction="cancelAction:" id="hmS-7G-5j1"/>
+                                <action selector="cancelAction:" destination="K7f-Sx-AVN" id="sf4-43-jiQ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="aZj-bd-jPK"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="aZj-bd-jPK">
+                            <connections>
+                                <segue destination="2u6-Bg-qQU" kind="unwind" unwindAction="unwindSegue:" id="Fy5-qR-hOC"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="imageOfPlace" destination="6gc-mL-bew" id="2NT-qm-qrn"/>
+                        <outlet property="placeImage" destination="6gc-mL-bew" id="2NT-qm-qrn"/>
+                        <outlet property="placeLocation" destination="eyf-Mx-hSJ" id="zTo-t7-kTF"/>
+                        <outlet property="placeName" destination="G7h-lx-mpJ" id="kvg-MW-zim"/>
+                        <outlet property="placeType" destination="eOm-w5-nn7" id="kEH-I6-tKr"/>
+                        <outlet property="saveButton" destination="aZj-bd-jPK" id="231-pu-Q4U"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WpJ-qY-EA9" userLabel="First Responder" sceneMemberID="firstResponder"/>
