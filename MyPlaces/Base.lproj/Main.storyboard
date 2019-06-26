@@ -66,9 +66,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="NameLabel" destination="DP8-rp-gvv" id="b9H-dH-IkQ"/>
                                     <outlet property="imageOfPlace" destination="eei-6G-SYW" id="kmc-vh-zls"/>
                                     <outlet property="locationLabel" destination="7aG-qz-afL" id="jtE-Ir-QeC"/>
+                                    <outlet property="nameLabel" destination="DP8-rp-gvv" id="b9H-dH-IkQ"/>
                                     <outlet property="typeLabel" destination="1rB-li-K01" id="r0D-7P-Xl6"/>
                                 </connections>
                             </tableViewCell>
@@ -112,7 +112,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo" translatesAutoresizingMaskIntoConstraints="NO" id="6gc-mL-bew">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="249.50000000000006"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="249.5"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -10,7 +10,6 @@ import UIKit
 
 class NewPlaceViewController: UITableViewController {
     
-    var newPlace: Place?
     var imageIsChanged = false
     
     @IBOutlet var placeImage: UIImageView!
@@ -22,7 +21,7 @@ class NewPlaceViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // замена пустого TableView на пустой View
         tableView.tableFooterView = UIView()
         // Отключение кнопки save по умолсанию
@@ -81,12 +80,17 @@ class NewPlaceViewController: UITableViewController {
         } else {
             image = #imageLiteral(resourceName: "imagePlaceholder")
         }
+        // Конвертируем данные из UIImage в pngData
+        let imageData = image?.pngData()
         
-        newPlace = Place(name: placeName.text!,
-                         location: placeLocation.text,
-                         type: placeType.text,
-                         image: image,
-                         restaurantImage: nil)
+        // Сохраняем введеные даные
+        let newPlace = Place(name: placeName.text!,
+                             location: placeLocation.text,
+                             type: placeType.text,
+                             imageData: imageData)
+        
+        // Сохраняем данные в БД
+        StorageManager.saveObject(newPlace)
     }
     
     @IBAction func cancelAction(_ sender: Any) {
@@ -105,6 +109,7 @@ extension NewPlaceViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
     // переключение saveButton
     @objc private func textFieldChanged() {
         if placeName.text?.isEmpty == false {

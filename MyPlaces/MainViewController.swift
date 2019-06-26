@@ -7,52 +7,44 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MainViewController: UITableViewController {
-    // Создаем массив мест
-    var places = Place.getPlaces()
-    
+    // Создаем массив мест из БД
+    var places: Results<Place>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-        
+        // Подгружаем БД
+        places = realm.objects(Place.self)
     }
 
     // MARK: - Table view data source
 
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Возвращаем количество ячеек из массива places
-        return places.count
+        // Возвращаем количество ячеек из массива places если БД пустая то 0
+        return places.isEmpty ? 0 : places.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
         let place = places[indexPath.row]
-        
+
         // Приминение name ячейки из массива places
-        cell.NameLabel?.text = place.name
+        cell.nameLabel.text = place.name
         // Приминение location ячейки из массива places
         cell.locationLabel.text = place.location
         // Приминение type ячейки из массива places
         cell.typeLabel.text = place.type
-        
-        if place.image == nil {
-            // Приминение image ячейки из массива places по имени
-            cell.imageOfPlace?.image = UIImage(named: place.restaurantImage!)
-        } else {
-            // риминение image ячейки из массива places
-            cell.imageOfPlace.image = place.image
-        }
-        
+        // Приминение image ячейки из массива places
+        cell.imageOfPlace.image = UIImage(data: place.imageData!)
+
         // Скругляем placeImage на радиус половины высоты placeImage
-        cell.imageOfPlace?.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2
+        cell.imageOfPlace.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2
         // Обрезаем скругление у placeImage
-        cell.imageOfPlace?.clipsToBounds = true
-        
+        cell.imageOfPlace.clipsToBounds = true
+
         return cell
     }
     
@@ -68,13 +60,11 @@ class MainViewController: UITableViewController {
     }
     */
 
-    @IBAction func unwindSegue(_ seque: UIStoryboardSegue) {
+    @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
         // извлекакем новые данные
-        guard let newPlaceVC = seque.source as? NewPlaceViewController else { return }
+        guard let newPlaceVC = segue.source as? NewPlaceViewController else { return }
         // присваиваем новые данные в newPlaceVC
         newPlaceVC.saveNewPlace()
-        // добавляем новые данные в массив places
-        places.append(newPlaceVC.newPlace!)
         // обновляем tableView
         tableView.reloadData()
     }
