@@ -13,6 +13,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var segmentedControl: UISegmentedControl!
+    @IBOutlet var reverseSortingButton: UIBarButtonItem!
     // Создаем массив мест из БД
     var places: Results<Place>!
     
@@ -93,6 +95,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         newPlaceVC.savePlace()
         // обновляем tableView
         tableView.reloadData()
+    }
+    
+    @IBAction func sortSelection(_ sender: UISegmentedControl) {
+    }
+    
+    @IBAction func reveredSorting(_ sender: Any) {
     }
     
 }
