@@ -10,6 +10,7 @@ import UIKit
 
 class NewPlaceViewController: UITableViewController {
     
+    var currentPlace: Place?
     var imageIsChanged = false
     
     @IBOutlet var placeImage: UIImageView!
@@ -28,6 +29,8 @@ class NewPlaceViewController: UITableViewController {
         saveButton.isEnabled = false
         // срабатование метода при редактировании placeName
         placeName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        // если редактирум то работает эта функция
+        setupEditScreen()
     }
 
     // MARK: Table view delegate
@@ -71,7 +74,7 @@ class NewPlaceViewController: UITableViewController {
         }
     }
     
-    func saveNewPlace() {
+    func savePlace() {
         
         // Выбор image по умолчанию или нет
         var image: UIImage?
@@ -82,15 +85,59 @@ class NewPlaceViewController: UITableViewController {
         }
         // Конвертируем данные из UIImage в pngData
         let imageData = image?.pngData()
-        
         // Сохраняем введеные даные
         let newPlace = Place(name: placeName.text!,
                              location: placeLocation.text,
                              type: placeType.text,
                              imageData: imageData)
+        // если редактируем то присваиваем данные
+        if currentPlace != nil {
+            try! realm.write {
+                currentPlace?.name = newPlace.name
+                currentPlace?.location = newPlace.location
+                currentPlace?.type = newPlace.type
+                currentPlace?.imageData = newPlace.imageData
+            }
+        } else {
+            // Сохраняем данные в БД
+            StorageManager.saveObject(newPlace)
+        }
         
-        // Сохраняем данные в БД
-        StorageManager.saveObject(newPlace)
+        
+    }
+    
+    // Функция для работы с редакрированной ячейкой
+    private func setupEditScreen() {
+        // работаем если currentPlace чем то заполнен
+        if currentPlace != nil {
+            // настраиваем NavigatorBar
+            setupNavigatorBar()
+            // отмена изображения по умолчанию
+            imageIsChanged = true
+            // конвертируем image из imageData в UIImage
+            guard let data = currentPlace?.imageData, let image = UIImage(data: data) else { return }
+            // заполняем поля NewPlaceViewController
+            placeImage.image = image
+            placeImage.contentMode = .scaleAspectFill // с параметром AspectFill
+            placeName.text = currentPlace?.name
+            placeLocation.text = currentPlace?.location
+            placeType.text = currentPlace?.type
+            
+        }
+    }
+    
+    // настройка NavigatorBar
+    private func setupNavigatorBar() {
+        // исправляем UIBarButtonItem на ""
+        if let topItem = navigationController?.navigationBar.topItem {
+            topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        }
+        // убираем leftBarButtonItem
+        navigationItem.leftBarButtonItem = nil
+        // присваевываем в заголовок name
+        title = currentPlace?.name
+        // включаем saveButton
+        saveButton.isEnabled = true
     }
     
     @IBAction func cancelAction(_ sender: Any) {

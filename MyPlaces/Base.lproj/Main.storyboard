@@ -70,6 +70,7 @@
                                     <outlet property="locationLabel" destination="7aG-qz-afL" id="jtE-Ir-QeC"/>
                                     <outlet property="nameLabel" destination="DP8-rp-gvv" id="b9H-dH-IkQ"/>
                                     <outlet property="typeLabel" destination="1rB-li-K01" id="r0D-7P-Xl6"/>
+                                    <segue destination="K7f-Sx-AVN" kind="show" identifier="showDetail" id="SOY-Jm-sdS"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -79,7 +80,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="My Places" id="M8z-5K-Evu">
+                    <navigationItem key="navigationItem" title="My Places" largeTitleDisplayMode="never" id="M8z-5K-Evu">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Jam-Y2-CDs">
                             <connections>
                                 <segue destination="93i-c4-AV6" kind="presentation" modalTransitionStyle="crossDissolve" id="XiT-QL-fq1"/>
@@ -112,7 +113,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo" translatesAutoresizingMaskIntoConstraints="NO" id="6gc-mL-bew">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="249.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="249.50000000000006"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -240,7 +241,7 @@
                             <outlet property="delegate" destination="K7f-Sx-AVN" id="Wna-up-tVi"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="New Place" id="aC1-dH-zpq">
+                    <navigationItem key="navigationItem" title="New Place" largeTitleDisplayMode="always" id="aC1-dH-zpq">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="TK0-Fw-9hI">
                             <connections>
                                 <action selector="cancelAction:" destination="K7f-Sx-AVN" id="sf4-43-jiQ"/>
@@ -263,14 +264,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WpJ-qY-EA9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="2u6-Bg-qQU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2347.826086956522" y="101.78571428571428"/>
+            <point key="canvasLocation" x="1648" y="102"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XDa-Un-3Jb">
             <objects>
                 <navigationController id="pWA-rl-sec" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4Y5-0j-515">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="4Y5-0j-515">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="SnellRoundhand-Bold" family="Snell Roundhand" pointSize="24"/>
@@ -300,10 +301,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qch-kU-8bC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1619" y="102"/>
+            <point key="canvasLocation" x="1648" y="-603"/>
         </scene>
     </scenes>
     <resources>
         <image name="Photo" width="195" height="196"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="896-QJ-j54"/>
+    </inferredMetricsTieBreakers>
 </document>
