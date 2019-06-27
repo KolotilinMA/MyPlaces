@@ -18,6 +18,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     // Создаем массив мест из БД
     var places: Results<Place>!
     
+    var ascendingSorting = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Подгружаем БД
@@ -98,9 +100,32 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func sortSelection(_ sender: UISegmentedControl) {
+        sorting()
     }
     
     @IBAction func reveredSorting(_ sender: Any) {
+        // меняем сортировку
+        ascendingSorting.toggle()
+        // Замена иконки сортировки
+        if ascendingSorting {
+            reverseSortingButton.image = #imageLiteral(resourceName: "AZ")
+        } else {
+            reverseSortingButton.image = #imageLiteral(resourceName: "ZA")
+        }
+        sorting()
+    }
+    
+    private func sorting() {
+        
+        if segmentedControl.selectedSegmentIndex == 0 {
+            // сортируем по имени с учетом направления (ascendingSorting)
+            places = places.sorted(byKeyPath: "date", ascending: ascendingSorting)
+        } else {
+            // сортируем по дате с учетом направления (ascendingSorting)
+            places = places.sorted(byKeyPath: "name", ascending: ascendingSorting)
+        }
+        // обновляем tableView
+        tableView.reloadData()
     }
     
 }
