@@ -50,10 +50,15 @@ class MainViewController: UITableViewController {
     
     // MARK: Table view delegate
     
+    // Функция удаления ячейки
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        // объявление ячейки для удаления
         let place = places[indexPath.row]
+        // создание действия удаления
         let delitAction = UITableViewRowAction(style: .default, title: "Delete") { (_, _) in
+            // удаление из БД
             StorageManager.deleteObject(place)
+            // удаление из памяти приложения
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
         return [delitAction]
