@@ -18,6 +18,7 @@ class NewPlaceViewController: UITableViewController {
     @IBOutlet var placeName: UITextField!
     @IBOutlet var placeLocation: UITextField!
     @IBOutlet var placeType: UITextField!
+    @IBOutlet var ratingControl: RatingControl!
     
     
     override func viewDidLoad() {
@@ -92,7 +93,9 @@ class NewPlaceViewController: UITableViewController {
         let newPlace = Place(name: placeName.text!,
                              location: placeLocation.text,
                              type: placeType.text,
-                             imageData: imageData)
+                             imageData: imageData,
+                             rating: Double(ratingControl.rating))
+        
         // если редактируем то присваиваем данные
         if currentPlace != nil {
             try! realm.write {
@@ -100,6 +103,7 @@ class NewPlaceViewController: UITableViewController {
                 currentPlace?.location = newPlace.location
                 currentPlace?.type = newPlace.type
                 currentPlace?.imageData = newPlace.imageData
+                currentPlace?.rating = newPlace.rating
             }
         } else {
             // Сохраняем данные в БД

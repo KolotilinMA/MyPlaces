@@ -30,7 +30,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo" translatesAutoresizingMaskIntoConstraints="NO" id="6gc-mL-bew">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="249.50000000000006"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="249.5"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -192,6 +192,7 @@
                         <outlet property="placeLocation" destination="eyf-Mx-hSJ" id="zTo-t7-kTF"/>
                         <outlet property="placeName" destination="G7h-lx-mpJ" id="kvg-MW-zim"/>
                         <outlet property="placeType" destination="eOm-w5-nn7" id="kEH-I6-tKr"/>
+                        <outlet property="ratingControl" destination="PUX-MG-bqb" id="fot-lY-jFJ"/>
                         <outlet property="saveButton" destination="aZj-bd-jPK" id="231-pu-Q4U"/>
                     </connections>
                 </tableViewController>
