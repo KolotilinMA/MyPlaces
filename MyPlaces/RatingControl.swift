@@ -13,7 +13,11 @@ import UIKit
     
     // MARK: Properties
     
-    var rating = 0
+    var rating = 0 {
+        didSet {
+            updateButtonSelectionState()
+        }
+    }
     private var ratingButtons = [UIButton]()
     
     @IBInspectable var starSize: CGSize = CGSize(width: 44.0, height: 44.0) {
@@ -44,7 +48,18 @@ import UIKit
     // MARK: Button Action
     
     @objc func ratingButtonTapped(button: UIButton) {
-        print("Button pressed")
+        
+        guard let index = ratingButtons.firstIndex(of: button) else { return }
+        
+        // Calculate the rating of the selected button
+        let selectedRating = index + 1
+        
+        if selectedRating == rating {
+            rating = 0
+        } else {
+            rating = selectedRating
+        }
+        
     }
     
     // MARK: Privete Methods
@@ -102,6 +117,13 @@ import UIKit
             
             // Add the new button on the rating button array
             ratingButtons.append(button)
+        }
+        updateButtonSelectionState()
+    }
+    
+    private func updateButtonSelectionState() {
+        for (index, button) in ratingButtons.enumerated() {
+            button.isSelected = index < rating
         }
     }
     

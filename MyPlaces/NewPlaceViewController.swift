@@ -24,7 +24,10 @@ class NewPlaceViewController: UITableViewController {
         super.viewDidLoad()
         
         // замена пустого TableView на пустой View
-        tableView.tableFooterView = UIView()
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0,
+                                                         y: 0,
+                                                         width: tableView.frame.size.width,
+                                                         height: 1))
         // Отключение кнопки save по умолсанию
         saveButton.isEnabled = false
         // срабатование метода при редактировании placeName
