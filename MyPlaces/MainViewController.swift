@@ -95,6 +95,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // MARK: Table view delegate
     
+    //отменяем выделение после перехода
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     // Функция удаления ячейки
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         // объявление ячейки для удаления
