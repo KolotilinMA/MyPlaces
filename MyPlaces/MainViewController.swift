@@ -61,20 +61,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             return filteredPlaces.count
         }
         // Возвращаем количество ячеек из массива places если БД пустая то 0
-        return places.isEmpty ? 0 : places.count
+        return places.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
         
-        var place = Place()
-        if isFiltering {
-            place = filteredPlaces[indexPath.row]
-        } else {
-            place = places[indexPath.row]
-        }
-        
-        
+        let place = isFiltering ? filteredPlaces[indexPath.row] : places[indexPath.row]
 
         // Приминение name ячейки из массива places
         cell.nameLabel.text = place.name
@@ -84,12 +77,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.typeLabel.text = place.type
         // Приминение image ячейки из массива places
         cell.imageOfPlace.image = UIImage(data: place.imageData!)
-
-        // Скругляем placeImage на радиус половины высоты placeImage
-        cell.imageOfPlace.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2
-        // Обрезаем скругление у placeImage
-        cell.imageOfPlace.clipsToBounds = true
-
+        // Применение rating к cosmosView
+        cell.cosmosView.rating = place.rating
+        
         return cell
     }
     
@@ -124,12 +114,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             // создаем indexPath из выбраной ячейки
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
             // создаем place из выбраной ячейки
-            let place: Place
-            if isFiltering {
-                place = filteredPlaces[indexPath.row]
-            } else {
-                place = places[indexPath.row]
-            }
+            
+            let place = isFiltering ? filteredPlaces[indexPath.row] : places[indexPath.row]
+            
             // создаем newPlaceVC на NewPlaceViewController
             let newPlaceVC = segue.destination as! NewPlaceViewController
             // присваиваем newPlaceVC данные из place
