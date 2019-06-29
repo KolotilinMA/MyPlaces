@@ -30,7 +30,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo" translatesAutoresizingMaskIntoConstraints="NO" id="6gc-mL-bew">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="249.50000000000006"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="249.5"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oxw-vM-ggy">
                                                     <rect key="frame" x="344" y="189" width="50" height="50"/>
@@ -303,7 +303,7 @@
                         <viewLayoutGuide key="safeArea" id="xdf-ex-p53"/>
                     </view>
                     <connections>
-                        <outlet property="adressLabel" destination="ZBY-Nu-q4k" id="lY9-qo-nsb"/>
+                        <outlet property="addressLabel" destination="ZBY-Nu-q4k" id="lY9-qo-nsb"/>
                         <outlet property="doneButton" destination="1bL-wk-SQ6" id="Wjb-iM-lL7"/>
                         <outlet property="mapPinImage" destination="kol-Za-PNp" id="ybX-hl-di9"/>
                         <outlet property="mapView" destination="ftJ-mc-Sqw" id="YIM-OF-haI"/>
