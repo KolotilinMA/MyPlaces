@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import Cosmos
+
 
 class NewPlaceViewController: UITableViewController {
     
     var currentPlace: Place!
     var imageIsChanged = false
-    var curretRating = 0.0
     
     @IBOutlet var placeImage: UIImageView!
     @IBOutlet var saveButton: UIBarButtonItem!
@@ -21,7 +20,6 @@ class NewPlaceViewController: UITableViewController {
     @IBOutlet var placeLocation: UITextField!
     @IBOutlet var placeType: UITextField!
     @IBOutlet var ratingControl: RatingControl!
-    @IBOutlet var cosmosView: CosmosView!
     
     
     override func viewDidLoad() {
@@ -38,11 +36,7 @@ class NewPlaceViewController: UITableViewController {
         placeName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         // если редактирум то работает эта функция
         setupEditScreen()
-        // настройка cosmosView
-        cosmosView.settings.fillMode = .half
-        cosmosView.didTouchCosmos = { rating in
-            self.curretRating = rating
-        }
+
     }
 
     // MARK: Table view delegate
@@ -102,7 +96,7 @@ class NewPlaceViewController: UITableViewController {
                              location: placeLocation.text,
                              type: placeType.text,
                              imageData: imageData,
-                             rating: curretRating)
+                             rating: Double(ratingControl.rating))
         
         // если редактируем то присваиваем данные
         if currentPlace != nil {
@@ -137,7 +131,7 @@ class NewPlaceViewController: UITableViewController {
             placeName.text = currentPlace?.name
             placeLocation.text = currentPlace?.location
             placeType.text = currentPlace?.type
-            cosmosView.rating = currentPlace.rating
+            ratingControl.rating = Int(currentPlace.rating)
         }
     }
     
