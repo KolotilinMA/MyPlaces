@@ -15,6 +15,7 @@ class MapViewController: UIViewController {
     var place = Place()
     let annotationIdentifier = "annotationIdentifier"
     let locationManager = CLLocationManager()
+    let regionInMeters = 10_000.00
     
     @IBOutlet var mapView: MKMapView!
     
@@ -23,6 +24,16 @@ class MapViewController: UIViewController {
         mapView.delegate = self
         setupPlacemark()
         checkLocationServises()
+    }
+    
+    // Функция в кнопке центрует положение пользователя с удалением regionInMeters
+    @IBAction func centerViewInUserLocation() {
+        if let location = locationManager.location?.coordinate {
+            let region = MKCoordinateRegion(center: location,
+                                            latitudinalMeters: regionInMeters,
+                                            longitudinalMeters: regionInMeters)
+            mapView.setRegion(region, animated: true)
+        }
     }
     
     @IBAction func closeVC() {

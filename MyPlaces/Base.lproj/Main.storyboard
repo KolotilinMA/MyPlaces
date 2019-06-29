@@ -30,7 +30,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo" translatesAutoresizingMaskIntoConstraints="NO" id="6gc-mL-bew">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="249.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="249.50000000000006"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oxw-vM-ggy">
                                                     <rect key="frame" x="344" y="189" width="50" height="50"/>
@@ -236,15 +236,28 @@
                                     <action selector="closeVC" destination="Q1W-q2-au9" eventType="touchUpInside" id="Ky1-Fl-kZw"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSQ-aE-PJr">
+                                <rect key="frame" x="324" y="772" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="DqF-ww-r3y"/>
+                                    <constraint firstAttribute="height" constant="50" id="t6k-MV-B11"/>
+                                </constraints>
+                                <state key="normal" image="Location"/>
+                                <connections>
+                                    <action selector="centerViewInUserLocation" destination="Q1W-q2-au9" eventType="touchUpInside" id="kvq-IO-cb9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ftJ-mc-Sqw" firstAttribute="trailing" secondItem="xdf-ex-p53" secondAttribute="trailing" id="HQc-rb-ejH"/>
                             <constraint firstItem="8gv-w7-jTZ" firstAttribute="top" secondItem="3Eh-7I-mz7" secondAttribute="topMargin" constant="40" id="IV4-tP-8mG"/>
+                            <constraint firstItem="xdf-ex-p53" firstAttribute="bottom" secondItem="CSQ-aE-PJr" secondAttribute="bottom" constant="40" id="PBS-yc-9aR"/>
                             <constraint firstAttribute="bottom" secondItem="ftJ-mc-Sqw" secondAttribute="bottom" id="b2X-Ks-B6W"/>
                             <constraint firstItem="8gv-w7-jTZ" firstAttribute="leading" secondItem="xdf-ex-p53" secondAttribute="leading" constant="40" id="kIB-2Q-yJw"/>
                             <constraint firstItem="ftJ-mc-Sqw" firstAttribute="top" secondItem="3Eh-7I-mz7" secondAttribute="top" id="mOv-Gb-6tG"/>
                             <constraint firstItem="ftJ-mc-Sqw" firstAttribute="leading" secondItem="xdf-ex-p53" secondAttribute="leading" id="qas-5l-Xsn"/>
+                            <constraint firstItem="xdf-ex-p53" firstAttribute="trailing" secondItem="CSQ-aE-PJr" secondAttribute="trailing" constant="40" id="s1Q-0Y-ATW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xdf-ex-p53"/>
                     </view>
@@ -434,6 +447,7 @@
     </scenes>
     <resources>
         <image name="AZ" width="25" height="24"/>
+        <image name="Location" width="128" height="128"/>
         <image name="Photo" width="195" height="196"/>
         <image name="cancel" width="128" height="128"/>
         <image name="emptyStar" width="255" height="256"/>
