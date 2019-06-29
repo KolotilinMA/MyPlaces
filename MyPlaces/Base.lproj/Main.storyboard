@@ -226,7 +226,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8gv-w7-jTZ">
-                                <rect key="frame" x="344" y="84" width="30" height="30"/>
+                                <rect key="frame" x="40" y="84" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="FkX-NN-r4v"/>
                                     <constraint firstAttribute="height" constant="30" id="enl-u7-64Y"/>
@@ -242,12 +242,15 @@
                             <constraint firstItem="ftJ-mc-Sqw" firstAttribute="trailing" secondItem="xdf-ex-p53" secondAttribute="trailing" id="HQc-rb-ejH"/>
                             <constraint firstItem="8gv-w7-jTZ" firstAttribute="top" secondItem="3Eh-7I-mz7" secondAttribute="topMargin" constant="40" id="IV4-tP-8mG"/>
                             <constraint firstAttribute="bottom" secondItem="ftJ-mc-Sqw" secondAttribute="bottom" id="b2X-Ks-B6W"/>
-                            <constraint firstItem="xdf-ex-p53" firstAttribute="trailing" secondItem="8gv-w7-jTZ" secondAttribute="trailing" constant="40" id="iZt-nf-q71"/>
+                            <constraint firstItem="8gv-w7-jTZ" firstAttribute="leading" secondItem="xdf-ex-p53" secondAttribute="leading" constant="40" id="kIB-2Q-yJw"/>
                             <constraint firstItem="ftJ-mc-Sqw" firstAttribute="top" secondItem="3Eh-7I-mz7" secondAttribute="top" id="mOv-Gb-6tG"/>
                             <constraint firstItem="ftJ-mc-Sqw" firstAttribute="leading" secondItem="xdf-ex-p53" secondAttribute="leading" id="qas-5l-Xsn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xdf-ex-p53"/>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="ftJ-mc-Sqw" id="YIM-OF-haI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OcK-8d-TRa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
