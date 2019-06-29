@@ -51,7 +51,7 @@ class NewPlaceViewController: UITableViewController {
             // создание кнопки Camera
             let camera = UIAlertAction(title: "Camera", style: .default) { _ in
                 // вызаваем chooseImagePicker с параметром camera
-                self.chooseImagePicker(sourse: .camera)
+                self.chooseImagePicker(source: .camera)
             }
             // вставляем cameraIcon в меню camera
             camera.setValue(cameraIcon, forKey: "image")
@@ -60,7 +60,7 @@ class NewPlaceViewController: UITableViewController {
             // создание кнопки Photo
             let photo = UIAlertAction(title: "Photo", style: .default) { _ in
                 // вызаваем chooseImagePicker с параметром photoLibrary
-                self.chooseImagePicker(sourse: .photoLibrary)
+                self.chooseImagePicker(source: .photoLibrary)
             }
             // вставляем photoIcon в меню photo
             photo.setValue(photoIcon, forKey: "image")
@@ -193,9 +193,9 @@ extension NewPlaceViewController: UITextFieldDelegate {
 // MARK: Работа с изображениеми
 extension NewPlaceViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func chooseImagePicker(sourse: UIImagePickerController.SourceType) {
+    func chooseImagePicker(source: UIImagePickerController.SourceType) {
         // проверка доступности источника выбора фото
-        if UIImagePickerController.isSourceTypeAvailable(sourse) {
+        if UIImagePickerController.isSourceTypeAvailable(source) {
             
             let imagePicker = UIImagePickerController()
             // объявляем делегатом imagePicker
@@ -203,13 +203,14 @@ extension NewPlaceViewController: UIImagePickerControllerDelegate, UINavigationC
             // разрешаем редактировать фото
             imagePicker.allowsEditing = true
             // определяем тип источника изображения
-            imagePicker.sourceType = sourse
+            imagePicker.sourceType = source
             // отображаем imagePicker
             present(imagePicker, animated: true, completion: nil)
         }
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         // Присваиваем отредактированное изображение в imageOfPlace
         placeImage.image = info[.editedImage] as? UIImage
         // позволяем масштабировать изображение

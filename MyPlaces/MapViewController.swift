@@ -89,13 +89,13 @@ class MapViewController: UIViewController {
     private func checkLocationServises() {
         if CLLocationManager.locationServicesEnabled() {
             setupLocationManager()
-            checkLocationAuthtorization()
+            checkLocationAuthorization()
         } else {
             // Show alert controller
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.showAlert(
                     title: "Location Services are Disabled",
-                    massage: "To enable it go: Settings -> Privacy -> Location Services and turn On")
+                    message: "To enable it go: Settings -> Privacy -> Location Services and turn On")
             }
         }
     }
@@ -107,29 +107,23 @@ class MapViewController: UIViewController {
     }
     
     // проверка статуса геопозиции
-    private func checkLocationAuthtorization() {
+    private func checkLocationAuthorization() {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse:
             mapView.showsUserLocation = true
-            if incomeSegueIdentifier == "getAdress" { showUserLocation() }
+            if incomeSegueIdentifier == "getAddress" { showUserLocation() }
             break
         case .denied:
             // Show alert controller
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.showAlert(
-                    title: "Location Services are Disabled",
-                    massage: "To enable it go: Settings -> Privacy -> Location Services and turn On")
+                    title: "Your Location is not Available",
+                    message: "To give permission Go to: Setting -> MyPlaces -> Location")
             }
             break
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
         case .restricted:
-            // Show alert controller
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.showAlert(
-                    title: "Location Services are Disabled",
-                    massage: "To enable it go: Settings -> Privacy -> Location Services and turn On")
-            }
             break
         case .authorizedAlways:
             break
@@ -155,8 +149,8 @@ class MapViewController: UIViewController {
     }
     
     // вызов AlertController
-    private func showAlert(title: String, massage: String) {
-        let alert = UIAlertController(title: title, message: massage, preferredStyle: .alert)
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
@@ -177,7 +171,7 @@ extension MapViewController: MKMapViewDelegate {
         // создаем image
         if let imageData = place.imageData {
             // создаем и задаем размеры image
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50 ))
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
             // скругляем и обрезаем
             imageView.layer.cornerRadius = 10
             imageView.clipsToBounds = true
@@ -211,7 +205,7 @@ extension MapViewController: MKMapViewDelegate {
             let buildNumber = placemark?.subThoroughfare
             
             DispatchQueue.main.async {
-                if streetName != nil, buildNumber != nil {
+                if streetName != nil && buildNumber != nil {
                     self.addressLabel.text = "\(streetName!), \(buildNumber!)"
                 } else if streetName != nil {
                     self.addressLabel.text = "\(streetName!)"

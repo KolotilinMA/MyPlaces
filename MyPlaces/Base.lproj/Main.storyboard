@@ -126,7 +126,7 @@
                                                     </constraints>
                                                     <state key="normal" image="Placeholder"/>
                                                     <connections>
-                                                        <segue destination="Q1W-q2-au9" kind="presentation" identifier="getAdress" id="0KJ-bm-EBb"/>
+                                                        <segue destination="Q1W-q2-au9" kind="presentation" identifier="getAddress" id="0KJ-bm-EBb"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -501,7 +501,7 @@
         <image name="map" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7ob-Wo-SbY"/>
+        <segue reference="0KJ-bm-EBb"/>
         <segue reference="kXx-mv-aRk"/>
     </inferredMetricsTieBreakers>
 </document>
