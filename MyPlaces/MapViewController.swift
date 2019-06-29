@@ -10,8 +10,14 @@ import UIKit
 import MapKit
 import CoreLocation
 
+protocol MapViewControllerDelegate {
+    func getAddress(_ address: String?)
+}
+
+
 class MapViewController: UIViewController {
     
+    var mapViewControllerDelegate: MapViewControllerDelegate?
     var place = Place()
     let annotationIdentifier = "annotationIdentifier"
     let locationManager = CLLocationManager()
@@ -41,7 +47,8 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func doneButtonPressed() {
-        
+        mapViewControllerDelegate?.getAddress(addressLabel.text)
+        dismiss(animated: true)
     }
     
     private func setupMapView() {
@@ -220,6 +227,6 @@ extension MapViewController: MKMapViewDelegate {
 // проверка изменения статуса авторизации
 extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        checkLocationAuthtorization()
+        checkLocationAuthorization()
     }
 }
