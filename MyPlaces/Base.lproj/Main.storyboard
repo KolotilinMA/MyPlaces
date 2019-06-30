@@ -30,7 +30,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo" translatesAutoresizingMaskIntoConstraints="NO" id="6gc-mL-bew">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="249.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="249.50000000000006"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oxw-vM-ggy">
                                                     <rect key="frame" x="344" y="189" width="50" height="50"/>
@@ -268,6 +268,9 @@
                                 <state key="normal" title="Done">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="doneButtonPressed" destination="Q1W-q2-au9" eventType="touchUpInside" id="64b-k4-FhI"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSQ-aE-PJr">
                                 <rect key="frame" x="344" y="692" width="30" height="30"/>
@@ -278,7 +281,17 @@
                                 <state key="normal" image="Location"/>
                                 <connections>
                                     <action selector="centerViewInUserLocation" destination="Q1W-q2-au9" eventType="touchUpInside" id="kvq-IO-cb9"/>
-                                    <action selector="doneButtonPressed" destination="Q1W-q2-au9" eventType="touchUpInside" id="CZG-wi-pER"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2H8-wt-uco">
+                                <rect key="frame" x="182" y="772" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="9Q5-J5-zri"/>
+                                    <constraint firstAttribute="width" constant="50" id="wXP-2g-ecK"/>
+                                </constraints>
+                                <state key="normal" image="GetDirection"/>
+                                <connections>
+                                    <action selector="goButtonPressed" destination="Q1W-q2-au9" eventType="touchUpInside" id="bDN-iW-iI3"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -291,11 +304,13 @@
                             <constraint firstItem="8gv-w7-jTZ" firstAttribute="top" secondItem="3Eh-7I-mz7" secondAttribute="topMargin" constant="40" id="IV4-tP-8mG"/>
                             <constraint firstItem="kol-Za-PNp" firstAttribute="centerX" secondItem="3Eh-7I-mz7" secondAttribute="centerX" id="Ikp-0Z-oN8"/>
                             <constraint firstItem="kol-Za-PNp" firstAttribute="centerY" secondItem="3Eh-7I-mz7" secondAttribute="centerY" constant="-20" id="NIS-FJ-z8e"/>
+                            <constraint firstItem="2H8-wt-uco" firstAttribute="centerX" secondItem="3Eh-7I-mz7" secondAttribute="centerX" id="P2q-bI-xzT"/>
                             <constraint firstItem="xdf-ex-p53" firstAttribute="trailing" secondItem="ZBY-Nu-q4k" secondAttribute="trailing" constant="16" id="aQ2-hd-9h6"/>
                             <constraint firstAttribute="bottom" secondItem="ftJ-mc-Sqw" secondAttribute="bottom" id="b2X-Ks-B6W"/>
                             <constraint firstItem="1bL-wk-SQ6" firstAttribute="centerX" secondItem="3Eh-7I-mz7" secondAttribute="centerX" id="bAu-bp-3Yf"/>
                             <constraint firstItem="8gv-w7-jTZ" firstAttribute="leading" secondItem="xdf-ex-p53" secondAttribute="leading" constant="40" id="kIB-2Q-yJw"/>
                             <constraint firstItem="ftJ-mc-Sqw" firstAttribute="top" secondItem="3Eh-7I-mz7" secondAttribute="top" id="mOv-Gb-6tG"/>
+                            <constraint firstItem="xdf-ex-p53" firstAttribute="bottom" secondItem="2H8-wt-uco" secondAttribute="bottom" constant="40" id="nkV-E1-PXm"/>
                             <constraint firstItem="ftJ-mc-Sqw" firstAttribute="leading" secondItem="xdf-ex-p53" secondAttribute="leading" id="qas-5l-Xsn"/>
                             <constraint firstItem="ZBY-Nu-q4k" firstAttribute="leading" secondItem="xdf-ex-p53" secondAttribute="leading" constant="16" id="sSd-wN-ctr"/>
                             <constraint firstItem="ZBY-Nu-q4k" firstAttribute="top" secondItem="xdf-ex-p53" secondAttribute="top" constant="150" id="uuk-S2-94Z"/>
@@ -305,6 +320,7 @@
                     <connections>
                         <outlet property="addressLabel" destination="ZBY-Nu-q4k" id="lY9-qo-nsb"/>
                         <outlet property="doneButton" destination="1bL-wk-SQ6" id="Wjb-iM-lL7"/>
+                        <outlet property="goButton" destination="2H8-wt-uco" id="8cN-KD-kcu"/>
                         <outlet property="mapPinImage" destination="kol-Za-PNp" id="ybX-hl-di9"/>
                         <outlet property="mapView" destination="ftJ-mc-Sqw" id="YIM-OF-haI"/>
                     </connections>
@@ -491,6 +507,7 @@
     </scenes>
     <resources>
         <image name="AZ" width="25" height="24"/>
+        <image name="GetDirection" width="50" height="50"/>
         <image name="Location" width="128" height="128"/>
         <image name="Photo" width="195" height="196"/>
         <image name="Pin" width="42" height="42"/>

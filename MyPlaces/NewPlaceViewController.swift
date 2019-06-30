@@ -47,7 +47,9 @@ class NewPlaceViewController: UITableViewController {
             let photoIcon = #imageLiteral(resourceName: "photo")
             
             // создание UIAlertController actionSheet
-            let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let actionSheet = UIAlertController(title: nil,
+                                                message: nil,
+                                                preferredStyle: .actionSheet)
             // создание кнопки Camera
             let camera = UIAlertAction(title: "Camera", style: .default) { _ in
                 // вызаваем chooseImagePicker с параметром camera
