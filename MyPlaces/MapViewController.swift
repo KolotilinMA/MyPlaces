@@ -21,9 +21,15 @@ class MapViewController: UIViewController {
     var place = Place()
     let annotationIdentifier = "annotationIdentifier"
     let locationManager = CLLocationManager()
-    let regionInMeters = 10_000.00
+    let regionInMeters = 1_000.00
     var incomeSegueIdentifier = ""
     var placeCoordinate: CLLocationCoordinate2D?
+    var directionsArray: [MKDirections] = []
+    var previousLocation: CLLocation? {
+        didSet {
+            startTracingUserLocation()
+        }
+    }
     
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var mapPinImage: UIImageView!
@@ -67,6 +73,16 @@ class MapViewController: UIViewController {
             doneButton.isHidden = true
             goButton.isHidden = false
         }
+    }
+    
+    private func resetMapView(withNew directions: MKDirections) {
+        // удаляем все наложения на карте
+        mapView.removeOverlays(mapView.overlays)
+        directionsArray.append(directions)
+        // отменяем все маршруты в массиве
+        let _ = directionsArray.map { $0.cancel() }
+        // удаляем все маршруты из массива
+        directionsArray.removeAll()
     }
     
     private func setupPlacemark() {
@@ -158,19 +174,44 @@ class MapViewController: UIViewController {
         }
     }
     
+    // центруем карту на позиции пользователя
+    private func startTracingUserLocation() {
+        // координаты пользователя
+        guard let previousLocation = previousLocation else { return }
+        // координаты центра карты
+        let center = getCenterLocation(for: mapView)
+        // проверка разницы растояний
+        guard center.distance(from: previousLocation) > 50 else { return }
+        // обновляем координаты на новые
+        self.previousLocation = center
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            // показываем с задержкой
+            self.showUserLocation()
+        }
+    }
+    
     private func getDirections() {
         // проверка на наличие начальной точки
         guard let location = locationManager.location?.coordinate else {
             showAlert(title: "Error", message: "Current location is not found")
             return
         }
+        // включение режима постоянного отслеживание положения пользователя
+        locationManager.startUpdatingLocation()
+        // присваиваем координаты
+        previousLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
+        
         // проверка на наличие точки назначения
-        guard let request = createDirectionRequest(from: location) else {
+        guard let request = createDirectionsRequest(from: location) else {
             showAlert(title: "Error", message: "Destination is not found")
             return
         }
-        // построение маршрута
+        // создание маршрута
         let directions = MKDirections(request: request)
+        // удаляем все старые маршруты
+        resetMapView(withNew: directions)
+        // построение маршрута
         directions.calculate { (response, error) in
             if let error = error {
                 print(error)
@@ -195,7 +236,7 @@ class MapViewController: UIViewController {
         }
     }
     
-    private func createDirectionRequest (from coordinate: CLLocationCoordinate2D) -> MKDirections.Request? {
+    private func createDirectionsRequest (from coordinate: CLLocationCoordinate2D) -> MKDirections.Request? {
         
         guard let distinationCoordinate = placeCoordinate else { return nil }
         let startingLocation = MKPlacemark(coordinate: coordinate)
@@ -262,6 +303,15 @@ extension MapViewController: MKMapViewDelegate {
         
         let center = getCenterLocation(for: mapView)
         let geocoder = CLGeocoder()
+        
+        if incomeSegueIdentifier == "showPlace" && previousLocation != nil {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                // показываем с задержкой
+                self.showUserLocation()
+            }
+        }
+        // отмена отложенного запроса
+        geocoder.cancelGeocode()
         
         // декодирует координаты в массив мест с возможной ошибкой
         geocoder.reverseGeocodeLocation(center) { (placemarks, error) in
