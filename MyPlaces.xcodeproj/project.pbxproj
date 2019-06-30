@@ -63,6 +63,54 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		871F10C722C9658C00F89809 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8788784322C14930002098ED /* MainViewController.swift */,
+				875F781E22C17594008193AC /* NewPlaceViewController.swift */,
+				8735CCB222C7640C00211125 /* MapViewController.swift */,
+				875F781A22C15FA0008193AC /* CustomTableViewCell.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		871F10C822C965F600F89809 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				875F781C22C163F8008193AC /* PlaceModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		871F10C922C9661400F89809 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8782249C22C693B5004E13B8 /* RatingControl.swift */,
+				87D0743A22C951E9001A7F96 /* MapManager.swift */,
+				873E6EAB22C3F75400D3DBA4 /* StorageManager.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		871F10CA22C9664400F89809 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				8788783122C1444F002098ED /* AppDelegate.swift */,
+				8788783822C14451002098ED /* Assets.xcassets */,
+				8788783D22C14451002098ED /* Info.plist */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		871F10CB22C9668500F89809 /* IBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				8788783522C1444F002098ED /* Main.storyboard */,
+				8788783A22C14451002098ED /* LaunchScreen.storyboard */,
+			);
+			path = IBuilder;
+			sourceTree = "<group>";
+		};
 		8788782522C1444F002098ED = {
 			isa = PBXGroup;
 			children = (
@@ -84,19 +132,11 @@
 		8788783022C1444F002098ED /* MyPlaces */ = {
 			isa = PBXGroup;
 			children = (
-				8788783122C1444F002098ED /* AppDelegate.swift */,
-				8788784322C14930002098ED /* MainViewController.swift */,
-				875F781E22C17594008193AC /* NewPlaceViewController.swift */,
-				8735CCB222C7640C00211125 /* MapViewController.swift */,
-				875F781A22C15FA0008193AC /* CustomTableViewCell.swift */,
-				8782249C22C693B5004E13B8 /* RatingControl.swift */,
-				875F781C22C163F8008193AC /* PlaceModel.swift */,
-				87D0743A22C951E9001A7F96 /* MapManager.swift */,
-				8788783522C1444F002098ED /* Main.storyboard */,
-				873E6EAB22C3F75400D3DBA4 /* StorageManager.swift */,
-				8788783822C14451002098ED /* Assets.xcassets */,
-				8788783A22C14451002098ED /* LaunchScreen.storyboard */,
-				8788783D22C14451002098ED /* Info.plist */,
+				871F10C722C9658C00F89809 /* ViewControllers */,
+				871F10C922C9661400F89809 /* Helpers */,
+				871F10C822C965F600F89809 /* Models */,
+				871F10CA22C9664400F89809 /* Support Files */,
+				871F10CB22C9668500F89809 /* IBuilder */,
 			);
 			path = MyPlaces;
 			sourceTree = "<group>";
@@ -390,7 +430,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T47UR4K92P;
-				INFOPLIST_FILE = MyPlaces/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/MyPlaces/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -409,7 +449,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T47UR4K92P;
-				INFOPLIST_FILE = MyPlaces/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/MyPlaces/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
